@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>To Do List</title>
-    <script src="./js/bundle.js"></script>
-  </head>
-  <body>
-
-  </body>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>To Do List</title>
+  <script src="./js/bundle.js"></script>
+</head>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="task in toDos">
+        <span>{{task.name}}</span>
+        <span v-if="task.isDone === true">Completed!</span>
+        <button v-if="!task.isDone" v-on:click="completedTask(task)">I have completed this</button>
+      </li>
+    </ul>
+    <form v-on:submit.prevent="saveNewTask">
+      <label for="new-item">Add a new task</label>
+      <input type="text" id="new-task" v-model="newTask">
+      <input type="submit"  value="Save New Task">
+    </form>
+  </div>
+</body>
 </html>
